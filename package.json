@@ -1,0 +1,19 @@
+{
+  "name": "oncarapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Luizpaim/oncarapp.git"
+  },
+  "author": "Luiz Paim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Luizpaim/oncarapp/issues"
+  },
+  "homepage": "https://github.com/Luizpaim/oncarapp#readme"
+}
