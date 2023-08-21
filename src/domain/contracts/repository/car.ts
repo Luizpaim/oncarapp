@@ -5,7 +5,7 @@ export interface CarRepository {
   create: (params: CreateCar.Input) => Promise<CreateCar.Output>;
   update: (params: UpdateCar.Input) => Promise<UpdateCar.Output>;
   delete: (params: DeleteCar.Input) => Promise<DeleteCar.Output>;
-  getAll: (params: GetAllCar.Input) => Promise<GetAllCar.Output>;
+  getAll: (params: GetAllCars.Input) => Promise<GetAllCars.Output>;
   getById: (params: GetByIdCar.Input) => Promise<GetByIdCar.Output>;
 }
 
@@ -16,7 +16,6 @@ type TypeCar = {
   price: number;
   createdAt: string;
   updatedAt: string;
-  deletedAt: string;
 };
 
 export namespace CreateCar {
@@ -28,10 +27,10 @@ export namespace UpdateCar {
   export type Output = Car;
 }
 export namespace DeleteCar {
-  export type Input = { _id: string; date: string };
+  export type Input = { _id: string; deletedAt: string };
   export type Output = Car;
 }
-export namespace GetAllCar {
+export namespace GetAllCars {
   export type Input = { page: number; qtd: number; filters: { brand?: string; model?: string; year?: string; price?: string; deletedAt: string } };
   export type Output = Result<Car[]>;
 }

@@ -5,5 +5,5 @@ export interface Authenticate {
 }
 export namespace Authenticate {
   export type Input = { email: string; password: string };
-  export type Output = { token: string; user: Partial<Admin> };
+  export type Output = { token: string; admin: Partial<Admin> };
 }
