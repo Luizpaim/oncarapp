@@ -10,7 +10,6 @@ type TypeLead = {
   contact: string;
   createdAt: string;
   updatedAt: string;
-  deletedAt: string;
 };
 
 export namespace CreateLead {

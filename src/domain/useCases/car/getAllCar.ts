@@ -1,4 +1,5 @@
 import { CarRepository, GetAllCars } from '@/domain/contracts';
+import { NoDataFoundError } from '@/domain/entities';
 
 export type GetAllCars = (params: {
   page: number;
@@ -23,10 +24,13 @@ export const setupGetAllCars: Setup = (carRepo) => async (params) => {
 
   if (year) filters['year'] = { $regex: '.*' + year + '.*', $options: 'i' };
 
-  const car = await carRepo.delete({
-    _id,
-    deletedAt: formatDateTime(new Date()),
+  const cars = await carRepo.getAll({
+    page,
+    qtd,
+    filters,
   });
 
-  return car;
+  if (!cars.data) throw new NoDataFoundError('Nenhum modelo encontrado!');
+
+  return cars;
 };

@@ -1,29 +1,18 @@
-import { AdminRepository, CreateAdmin } from '@/domain/contracts';
-import { Bcrypt } from '@/domain/contracts/utils';
-import { formatDateTime } from '@/domain/entities/helpers';
-import { DataAlreadyExistsError } from '@/domain/entities/errors';
+import { CarRepository, GetByIdCar } from '@/domain/contracts';
+import { NoDataFoundError } from '@/domain/entities';
 
-export type CreateAdmin = (params: { email: string; password: string }) => Promise<CreateAdmin.Output>;
+export type GetByIdCar = (params: { _id: string }) => Promise<GetByIdCar.Output>;
 
-type Setup = (adminRepo: AdminRepository, bcrypt: Bcrypt) => CreateAdmin;
+type Setup = (carRepo: CarRepository) => GetByIdCar;
 
-export const setupCreateAdmin: Setup = (adminRepo, bcrypt) => async (params) => {
-  const { email, password } = params;
+export const setupGetByIdCar: Setup = (carRepo) => async (params) => {
+  const { _id } = params;
 
-  const emailAdmin = await adminRepo.getEmail({ email });
-
-  if (emailAdmin) {
-    throw new DataAlreadyExistsError('E-mail informado já existe!');
-  }
-
-  const passwordHash = await bcrypt.encrypt({ password, time: 8 });
-
-  const admin = await adminRepo.create({
-    email,
-    password: passwordHash,
-    createdAt: formatDateTime(new Date()),
-    updatedAt: formatDateTime(new Date()),
+  const car = await carRepo.getById({
+    _id,
   });
+  
+  if (!car) throw new NoDataFoundError('Nenhum modelo encontrado!');
 
-  return admin;
+  return car;
 };
