@@ -4,10 +4,10 @@ import { NoDataFoundError } from '@/domain/entities';
 export type GetAllCars = (params: {
   page: number;
   qtd: number;
-  brand?: string;
-  model?: string;
-  year?: string;
-  price?: string;
+  brand: string;
+  model: string;
+  year: string;
+  price: number;
 }) => Promise<GetAllCars.Output>;
 
 type Setup = (carRepo: CarRepository) => GetAllCars;
@@ -25,8 +25,8 @@ export const setupGetAllCars: Setup = (carRepo) => async (params) => {
   if (year) filters['year'] = { $regex: '.*' + year + '.*', $options: 'i' };
 
   const cars = await carRepo.getAll({
-    page,
-    qtd,
+    page: page ? page : 1,
+    qtd: qtd ? qtd : 10,
     filters,
   });
 

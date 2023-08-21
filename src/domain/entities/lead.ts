@@ -1,5 +1,6 @@
 type TypeLead = {
   _id: string;
+  idCar: string;
   name: string;
   email: string;
   contact: string;
@@ -10,6 +11,7 @@ type TypeLead = {
 
 export class Lead {
   _id: string;
+  idCar: string;
   name: string;
   email: string;
   contact: string;
@@ -17,8 +19,9 @@ export class Lead {
   updatedAt: string;
   deletedAt: string;
 
-  constructor({ _id, name, email, contact, createdAt, updatedAt, deletedAt }: TypeLead) {
+  constructor({ _id, idCar, name, email, contact, createdAt, updatedAt, deletedAt }: TypeLead) {
     this._id = _id;
+    this.idCar = idCar;
     this.name = name;
     this.email = email;
     this.contact = contact;

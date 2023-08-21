@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ServerError } from "@/adapters/errors";
+import { ServerError } from "@/application/errors";
 
 enum FunctionsErrorCode {
   "ok" = 200,

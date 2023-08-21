@@ -1,5 +1,5 @@
-import { Controller } from "@/application/controllers";
-import { NextFunction, Request, Response } from "express";
+import { Controller } from '@/application/controllers';
+import { NextFunction, Request, Response } from 'express';
 
 export interface HttpRequest {
   params: any;

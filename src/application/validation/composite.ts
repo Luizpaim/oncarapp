@@ -1,4 +1,4 @@
-import { Validator } from "@/adapters/validation";
+import { Validator } from "@/application/validation";
 
 export class ValidationComposite implements Validator {
   constructor(private readonly validators: Validator[]) {}

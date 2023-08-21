@@ -9,21 +9,12 @@ export interface CarRepository {
   getById: (params: GetByIdCar.Input) => Promise<GetByIdCar.Output>;
 }
 
-type TypeCar = {
-  brand: string;
-  model: string;
-  year: string;
-  price: number;
-  createdAt: string;
-  updatedAt: string;
-};
-
 export namespace CreateCar {
-  export type Input = TypeCar;
+  export type Input = Partial<Car>;
   export type Output = Car;
 }
 export namespace UpdateCar {
-  export type Input = Partial<TypeCar>;
+  export type Input = Partial<Car>;
   export type Output = Car;
 }
 export namespace DeleteCar {

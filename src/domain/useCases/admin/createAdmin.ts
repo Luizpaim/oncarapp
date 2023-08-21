@@ -12,9 +12,7 @@ export const setupCreateAdmin: Setup = (adminRepo, bcrypt) => async (params) => 
 
   const emailAdmin = await adminRepo.getEmail({ email });
 
-  if (emailAdmin) {
-    throw new DataAlreadyExistsError('E-mail informado já existe!');
-  }
+  if (emailAdmin) throw new DataAlreadyExistsError('E-mail informado já existe!');
 
   const passwordHash = await bcrypt.encrypt({ password, time: 8 });
 
