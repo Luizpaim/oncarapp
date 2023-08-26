@@ -1,19 +1,19 @@
-import Mongoose from 'mongoose';
+import Mongoose from "mongoose";
 
-import { Car } from '@/domain/entities';
-import { CarRepository, CreateCar, UpdateCar, GetAllCars, GetByIdCar, DeleteCar, Result } from '@/domain/contracts';
+import { Car } from "@/domain/entities";
+import { CarRepository, CreateCar, UpdateCar, GetAllCars, GetByIdCar, DeleteCar, Result } from "@/domain/contracts";
 
 const carSchema = new Mongoose.Schema<Car>({
   brand: { type: String, required: true },
   model: { type: String, required: true },
   year: { type: String, required: true },
-  price: { type: Number, required: true },
+  price: { type: String, required: true },
   createdAt: { type: String },
   updatedAt: { type: String },
   deletedAt: { type: String },
 });
 
-const carDocument = Mongoose.model<Car>('Car', carSchema);
+const carDocument = Mongoose.model<Car>("Car", carSchema);
 
 export class CarRepositoryMongoDb implements CarRepository {
   async create(input: CreateCar.Input): Promise<CreateCar.Output> {
@@ -40,7 +40,7 @@ export class CarRepositoryMongoDb implements CarRepository {
     const carResults = await carDocument
       .find(input.filters)
       .sort({ name: 1 })
-      .collation({ locale: 'pt', strength: 1 })
+      .collation({ locale: "pt", strength: 1 })
       .skip(input.page * input.qtd - input.qtd)
       .limit(input.qtd);
     cars.data = carResults.map((car) => new Car(car as Car));

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Validator, Required, RequiredString } from '@/application/validation';
-import { RequiredEmail } from '@/application/validation';
+import { Validator, Required, RequiredString } from "@/application/validation";
+import { RequiredEmail } from "@/application/validation";
 
 export class ValidationBuilder {
   private constructor(private readonly value: any, private readonly fieldName?: string, private readonly validators: Validator[] = []) {}
@@ -10,7 +10,7 @@ export class ValidationBuilder {
   }
 
   required(): ValidationBuilder {
-    if (typeof this.value === 'string') {
+    if (typeof this.value === "string") {
       this.validators.push(new RequiredString(this.value, this.fieldName));
     } else {
       this.validators.push(new Required(this.value, this.fieldName));

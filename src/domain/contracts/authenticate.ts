@@ -1,4 +1,4 @@
-import { Admin } from '../entities';
+import { Admin } from "../entities";
 
 export interface Authenticate {
   login: (params: Authenticate.Input) => Promise<Authenticate.Input>;

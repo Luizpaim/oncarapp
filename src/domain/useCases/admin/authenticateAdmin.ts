@@ -1,5 +1,5 @@
-import { Authenticate, AdminRepository, Bcrypt, Jsonwebtoken } from '@/domain/contracts';
-import { AuthenticationError } from '@/domain/entities/errors';
+import { Authenticate, AdminRepository, Bcrypt, Jsonwebtoken } from "@/domain/contracts";
+import { AuthenticationError } from "@/domain/entities/errors";
 
 export type AuthenticateAdmin = (params: { email: string; password: string }) => Promise<Authenticate.Output>;
 
@@ -10,16 +10,16 @@ export const setupAuthenticateAdmin: Setup = (adminRepo, bcrypt, jsonwebtoken) =
   const admin = await adminRepo.getAuthenticate({ email });
 
   if (!admin) {
-    throw new AuthenticationError('Por Favor verifique, E-mail ou Senha incorretos!');
+    throw new AuthenticationError("Por Favor verifique, E-mail ou Senha incorretos!");
   }
 
   const passwordMatch = await bcrypt.compare({ password, passwordHash: admin.password });
 
   if (!passwordMatch) {
-    throw new AuthenticationError('Por Favor verifique, E-mail ou Senha incorretos!');
+    throw new AuthenticationError("Por Favor verifique, E-mail ou Senha incorretos!");
   }
 
-  const token = jsonwebtoken.sign({ email: admin.email, key: process.env.TOKEN_KEY, subject: admin._id.toString(), expiresIn: '1d' });
+  const token = jsonwebtoken.sign({ email: admin.email, key: process.env.TOKEN_KEY, subject: admin._id.toString(), expiresIn: "7d" });
 
   return { token: token, admin: { _id: admin._id.toString() } };
 };

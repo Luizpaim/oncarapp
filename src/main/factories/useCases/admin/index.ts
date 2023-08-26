@@ -1,2 +1,2 @@
-export * from './createAdmin'
-export * from './authenticateAdmin'
+export * from "./createAdmin"
+export * from "./authenticateAdmin"

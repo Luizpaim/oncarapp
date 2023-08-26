@@ -1,5 +1,5 @@
-import { CarRepository, GetByIdCar } from '@/domain/contracts';
-import { NoDataFoundError } from '@/domain/entities';
+import { CarRepository, GetByIdCar } from "@/domain/contracts";
+import { NoDataFoundError } from "@/domain/entities";
 
 export type GetByIdCar = (params: { _id: string }) => Promise<GetByIdCar.Output>;
 
@@ -12,7 +12,7 @@ export const setupGetByIdCar: Setup = (carRepo) => async (params) => {
     _id,
   });
   
-  if (!car) throw new NoDataFoundError('Nenhum modelo encontrado!');
+  if (!car) throw new NoDataFoundError("Nenhum modelo encontrado!");
 
   return car;
 };

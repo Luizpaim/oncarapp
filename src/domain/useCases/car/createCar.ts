@@ -1,7 +1,7 @@
-import { CarRepository, CreateCar } from '@/domain/contracts';
-import { formatDateTime } from '@/domain/entities/helpers';
+import { CarRepository, CreateCar } from "@/domain/contracts";
+import { formatDateTime } from "@/domain/entities/helpers";
 
-export type CreateCar = (params: { brand: string; model: string; year: string; price: number }) => Promise<CreateCar.Output>;
+export type CreateCar = (params: { brand: string; model: string; year: string; price: string }) => Promise<CreateCar.Output>;
 
 type Setup = (carRepo: CarRepository) => CreateCar;
 

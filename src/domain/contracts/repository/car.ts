@@ -1,5 +1,5 @@
-import { Result } from '@/domain/contracts/result';
-import { Car } from '@/domain/entities';
+import { Result } from "@/domain/contracts/result";
+import { Car } from "@/domain/entities";
 
 export interface CarRepository {
   create: (params: CreateCar.Input) => Promise<CreateCar.Output>;

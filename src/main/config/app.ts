@@ -1,11 +1,11 @@
-import cors from 'cors';
-import express, { json } from 'express';
-import 'express-async-errors';
-import 'reflect-metadata';
+import cors from "cors";
+import express, { json } from "express";
+import "express-async-errors";
+import "reflect-metadata";
 
-import routes from '@/main/routers';
-import Database from '@/infrastructure/repository/mongoDb/helpers/connection';
-import bodyParser from 'body-parser';
+import routes from "@/main/routers";
+import Database from "@/infrastructure/repository/mongoDb/helpers/connection";
+import bodyParser from "body-parser";
 
 class App {
   private database: Database = new Database();

@@ -1,9 +1,9 @@
-import { Controller } from '@/application/controllers';
-import { CreateAdmin } from '@/domain/useCases/admin';
-import { Response, ok, badRequest } from '@/application/helpers';
-import { Validator, ValidationBuilder } from '@/application/validation';
-import { DataAlreadyExistsError } from '@/domain/entities/errors';
-import { Admin } from '@/domain/entities';
+import { Controller } from "@/application/controllers";
+import { CreateAdmin } from "@/domain/useCases/admin";
+import { Response, ok, badRequest } from "@/application/helpers";
+import { Validator, ValidationBuilder } from "@/application/validation";
+import { DataAlreadyExistsError } from "@/domain/entities/errors";
+import { Admin } from "@/domain/entities";
 
 type HttpRequestBody = { email: string; password: string };
 
@@ -27,8 +27,8 @@ export class CreateAdminController extends Controller {
   }
   buildValidators({ email, password }: HttpRequestBody): Validator[] {
     return [
-      ...ValidationBuilder.of({ value: email, fieldName: 'email' }).required().email().build(),
-      ...ValidationBuilder.of({ value: password, fieldName: 'password' }).required().build(),
+      ...ValidationBuilder.of({ value: email, fieldName: "email" }).required().email().build(),
+      ...ValidationBuilder.of({ value: password, fieldName: "password" }).required().build(),
     ];
   }
 }

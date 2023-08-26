@@ -1,9 +1,9 @@
-import { Controller } from '@/application/controllers';
-import { AuthenticateAdmin } from '@/domain/useCases';
-import { Response, ok, unauthenticated } from '@/application/helpers';
-import { Validator, ValidationBuilder } from '@/application/validation';
-import { AuthenticationError } from '@/domain/entities/errors';
-import { Admin } from '@/domain/entities';
+import { Controller } from "@/application/controllers";
+import { AuthenticateAdmin } from "@/domain/useCases";
+import { Response, ok, unauthenticated } from "@/application/helpers";
+import { Validator, ValidationBuilder } from "@/application/validation";
+import { AuthenticationError } from "@/domain/entities/errors";
+import { Admin } from "@/domain/entities";
 
 type HttpRequestBody = {
   email: string;
@@ -29,8 +29,8 @@ export class AuthenticateAdminController extends Controller {
   }
   buildValidators({ email, password }: HttpRequestBody): Validator[] {
     return [
-      ...ValidationBuilder.of({ value: email, fieldName: 'email' }).required().email().build(),
-      ...ValidationBuilder.of({ value: password, fieldName: 'password' }).required().build(),
+      ...ValidationBuilder.of({ value: email, fieldName: "email" }).required().email().build(),
+      ...ValidationBuilder.of({ value: password, fieldName: "password" }).required().build(),
     ];
   }
 }

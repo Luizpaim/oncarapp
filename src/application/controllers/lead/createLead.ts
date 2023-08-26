@@ -1,8 +1,8 @@
-import { Controller } from '@/application/controllers';
-import { CreateLead } from '@/domain/useCases';
-import { Response, badRequest, ok } from '@/application/helpers';
-import { Validator, ValidationBuilder } from '@/application/validation';
-import { DataAlreadyExistsError, Lead } from '@/domain/entities';
+import { Controller } from "@/application/controllers";
+import { CreateLead } from "@/domain/useCases";
+import { Response, badRequest, ok } from "@/application/helpers";
+import { Validator, ValidationBuilder } from "@/application/validation";
+import { DataAlreadyExistsError, Lead } from "@/domain/entities";
 
 type HttpRequestBody = { idCar: string; name: string; email: string; contact: string };
 
@@ -28,10 +28,10 @@ export class CreateLeadController extends Controller {
   }
   buildValidators({ name, email, contact, idCar }: HttpRequestBody): Validator[] {
     return [
-      ...ValidationBuilder.of({ value: idCar, fieldName: 'idCar' }).required().build(),
-      ...ValidationBuilder.of({ value: name, fieldName: 'name' }).required().build(),
-      ...ValidationBuilder.of({ value: email, fieldName: 'email' }).required().email().build(),
-      ...ValidationBuilder.of({ value: contact, fieldName: 'contact' }).required().build(),
+      ...ValidationBuilder.of({ value: idCar, fieldName: "idCar" }).required().build(),
+      ...ValidationBuilder.of({ value: name, fieldName: "name" }).required().build(),
+      ...ValidationBuilder.of({ value: email, fieldName: "email" }).required().email().build(),
+      ...ValidationBuilder.of({ value: contact, fieldName: "contact" }).required().build(),
     ];
   }
 }

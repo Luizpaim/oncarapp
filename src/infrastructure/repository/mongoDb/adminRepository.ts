@@ -1,9 +1,10 @@
-import Mongoose from 'mongoose';
+import Mongoose from "mongoose";
 
-import { Admin } from '@/domain/entities';
-import { AdminRepository, CreateAdmin, GetAuthenticateAdmin, GetEmailAdmin } from '@/domain/contracts';
+import { Admin } from "@/domain/entities";
+import { AdminRepository, CreateAdmin, GetAuthenticateAdmin, GetEmailAdmin } from "@/domain/contracts";
 
 const adminSchema = new Mongoose.Schema<Admin>({
+  
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   createdAt: { type: String },
@@ -11,7 +12,7 @@ const adminSchema = new Mongoose.Schema<Admin>({
   deletedAt: { type: String },
 });
 
-const adminDocument = Mongoose.model<Admin>('Admin', adminSchema);
+const adminDocument = Mongoose.model<Admin>("Admin", adminSchema);
 
 export class AdminRepositoryMongoDb implements AdminRepository {
   async create(input: CreateAdmin.Input): Promise<CreateAdmin.Output> {
@@ -26,7 +27,7 @@ export class AdminRepositoryMongoDb implements AdminRepository {
   }
 
   async getAuthenticate(input: GetAuthenticateAdmin.Input): Promise<GetAuthenticateAdmin.Output> {
-    const getEmail = await adminDocument.findOne({ ...input });
-    return getEmail;
+    const auth = await adminDocument.findOne({ ...input });
+    return auth;
   }
 }

@@ -1,7 +1,7 @@
-import Mongoose from 'mongoose';
+import Mongoose from "mongoose";
 
-import { Lead } from '@/domain/entities';
-import { LeadRepository, CreateLead, GetEmailLead } from '@/domain/contracts';
+import { Lead } from "@/domain/entities";
+import { LeadRepository, CreateLead, GetEmailLead } from "@/domain/contracts";
 
 const leadSchema = new Mongoose.Schema<Lead>({
   idCar: { type: String, required: true },
@@ -13,7 +13,7 @@ const leadSchema = new Mongoose.Schema<Lead>({
   deletedAt: { type: String },
 });
 
-const leadDocument = Mongoose.model<Lead>('Lead', leadSchema);
+const leadDocument = Mongoose.model<Lead>("Lead", leadSchema);
 
 export class LeadRepositoryMongoDb implements LeadRepository {
   async create(input: CreateLead.Input): Promise<CreateLead.Output> {

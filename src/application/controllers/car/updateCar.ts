@@ -1,13 +1,13 @@
-import { Controller } from '@/application/controllers';
-import { UpdateCar } from '@/domain/useCases';
-import { Response, notFound, ok } from '@/application/helpers';
-import { Validator, ValidationBuilder } from '@/application/validation';
-import { NoDataFoundError } from '@/domain/entities/errors';
-import { Car } from '@/domain/entities';
+import { Controller } from "@/application/controllers";
+import { UpdateCar } from "@/domain/useCases";
+import { Response, notFound, ok } from "@/application/helpers";
+import { Validator, ValidationBuilder } from "@/application/validation";
+import { NoDataFoundError } from "@/domain/entities/errors";
+import { Car } from "@/domain/entities";
 
-type HttpRequestBody = { brand: string; model: string; year: string; price: number };
+type HttpRequestBody = { brand: string; model: string; year: string; price: string };
 
-type HttpRequestParams = { _id: string };
+type HttpRequestParams = { id: string };
 
 type Model = Error | Car;
 
@@ -18,7 +18,7 @@ export class UpdateCarController extends Controller {
   async perform(requestBody: HttpRequestBody, requestParams: HttpRequestParams, requestQuery: null): Promise<Response<Model>> {
     try {
       const result = await this.updateCar({
-        _id: requestParams._id,
+        _id: requestParams.id,
         brand: requestBody.brand,
         model: requestBody.model,
         year: requestBody.year,
@@ -29,8 +29,5 @@ export class UpdateCarController extends Controller {
       if (error instanceof NoDataFoundError) return notFound(error);
       throw error;
     }
-  }
-  buildValidators({ _id }: HttpRequestParams): Validator[] {
-    return [...ValidationBuilder.of({ value: _id, fieldName: '_id' }).required().build()];
   }
 }

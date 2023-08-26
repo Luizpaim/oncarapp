@@ -1,4 +1,4 @@
-import { Admin } from '@/domain/entities/';
+import { Admin } from "@/domain/entities/";
 
 export interface AdminRepository {
   create: (params: CreateAdmin.Input) => Promise<CreateAdmin.Output>;

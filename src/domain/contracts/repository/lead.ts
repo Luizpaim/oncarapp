@@ -1,4 +1,4 @@
-import { Lead } from '@/domain/entities';
+import { Lead } from "@/domain/entities";
 
 export interface LeadRepository {
   create: (params: CreateLead.Input) => Promise<CreateLead.Output>;

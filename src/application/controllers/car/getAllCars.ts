@@ -1,9 +1,9 @@
-import { Controller } from '@/application/controllers';
-import { GetAllCars } from '@/domain/useCases';
-import { Response, ok, notFound } from '@/application/helpers';
-import { NoDataFoundError } from '@/domain/entities/errors';
-import { Car } from '@/domain/entities';
-import { Result } from '@/domain/contracts';
+import { Controller } from "@/application/controllers";
+import { GetAllCars } from "@/domain/useCases";
+import { Response, ok, notFound } from "@/application/helpers";
+import { NoDataFoundError } from "@/domain/entities/errors";
+import { Car } from "@/domain/entities";
+import { Result } from "@/domain/contracts";
 
 type HttpRequestQuery = {
   page: number;
@@ -11,7 +11,7 @@ type HttpRequestQuery = {
   brand: string;
   model: string;
   year: string;
-  price: number;
+  price: string;
 };
 
 type Model = Error | Result<Car[]>;

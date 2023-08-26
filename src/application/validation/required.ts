@@ -1,5 +1,5 @@
-import { Validator } from '@/application/validation';
-import { RequiredEmailError, RequiredFieldError } from '@/application/errors';
+import { Validator } from "@/application/validation";
+import { RequiredEmailError, RequiredFieldError } from "@/application/errors";
 
 export class Required implements Validator {
   constructor(readonly value: any, readonly fieldName?: string) {}
@@ -18,7 +18,7 @@ export class RequiredString extends Required {
   }
 
   validate(): Error | undefined {
-    if (super.validate() !== undefined || this.value === '') {
+    if (super.validate() !== undefined || this.value === "") {
       return new RequiredFieldError(this.fieldName);
     }
     return undefined;

@@ -1,6 +1,6 @@
-import { CarRepository, DeleteCar } from '@/domain/contracts';
-import { NoDataFoundError } from '@/domain/entities';
-import { formatDateTime } from '@/domain/entities/helpers';
+import { CarRepository, DeleteCar } from "@/domain/contracts";
+import { NoDataFoundError } from "@/domain/entities";
+import { formatDateTime } from "@/domain/entities/helpers";
 
 export type DeleteCar = (params: { _id: string }) => Promise<DeleteCar.Output>;
 
@@ -13,7 +13,7 @@ export const setupDeleteCar: Setup = (carRepo) => async (params) => {
     _id,
   });
 
-  if (!car) throw new NoDataFoundError('Nenhum modelo encontrado!');
+  if (!car) throw new NoDataFoundError("Nenhum modelo encontrado!");
 
   const carDeleted = await carRepo.delete({
     _id,

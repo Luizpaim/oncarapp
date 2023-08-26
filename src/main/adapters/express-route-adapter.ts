@@ -1,5 +1,5 @@
-import { Controller } from '@/application/controllers';
-import { NextFunction, Request, Response } from 'express';
+import { Controller } from "@/application/controllers";
+import { NextFunction, Request, Response } from "express";
 
 export interface HttpRequest {
   params: any;
@@ -19,7 +19,7 @@ export const adaptRoute = (controller: Controller) => {
 
     const httpResponse = await controller.handle(body, params, query);
     if (httpResponse == undefined) {
-      throw new Error(`Server Error`);
+      throw new Error("Server Error");
     }
     res.status(httpResponse.statusCode).json({ result: httpResponse.result, message: httpResponse.message });
   };

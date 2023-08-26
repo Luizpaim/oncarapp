@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { AuthenticationError, TokenExpiredError } from '@/domain/entities/errors';
+import { AuthenticationError } from '@/domain/entities/errors';
 import { unauthenticated } from '@/application/helpers';
 import { verify } from 'jsonwebtoken';
 
@@ -19,7 +19,7 @@ export function authenticate(request: Request, response: Response, next: NextFun
 
     return next();
   } catch (error) {
-    if (error instanceof AuthenticationError || error instanceof TokenExpiredError) return unauthenticated(error);
+    if (error instanceof AuthenticationError) return unauthenticated(error);
 
     throw error;
   }

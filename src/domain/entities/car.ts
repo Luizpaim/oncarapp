@@ -3,7 +3,7 @@ type TypeCar = {
   brand: string;
   model: string;
   year: string;
-  price: number;
+  price: string;
   createdAt: string;
   updatedAt: string;
   deletedAt: string;
@@ -14,7 +14,7 @@ export class Car {
   brand: string;
   model: string;
   year: string;
-  price: number;
+  price: string;
   createdAt: string;
   updatedAt: string;
   deletedAt: string;

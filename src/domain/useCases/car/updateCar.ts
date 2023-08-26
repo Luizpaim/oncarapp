@@ -1,7 +1,7 @@
-import { CarRepository, UpdateCar } from '@/domain/contracts';
-import { NoDataFoundError, formatDateTime } from '@/domain/entities';
+import { CarRepository, UpdateCar } from "@/domain/contracts";
+import { NoDataFoundError, formatDateTime } from "@/domain/entities";
 
-export type UpdateCar = (params: { _id: string; brand: string; model: string; year: string; price: number }) => Promise<UpdateCar.Output>;
+export type UpdateCar = (params: { _id: string; brand: string; model: string; year: string; price: string }) => Promise<UpdateCar.Output>;
 
 type Setup = (carRepo: CarRepository) => UpdateCar;
 
@@ -12,7 +12,7 @@ export const setupUpdateCar: Setup = (carRepo) => async (params) => {
     _id,
   });
 
-  if (!car) throw new NoDataFoundError('Nenhum modelo encontrado!');
+  if (!car) throw new NoDataFoundError("Nenhum modelo encontrado!");
 
   car.brand = brand ? brand : car.brand;
   car.model = model ? model : car.model;
@@ -20,9 +20,11 @@ export const setupUpdateCar: Setup = (carRepo) => async (params) => {
   car.year = year ? year : car.year;
   car.updatedAt = formatDateTime(new Date());
 
+  await carRepo.update(car);
+
   const carUpdate = await carRepo.getById({
     _id,
   });
 
-  return car;
+  return carUpdate;
 };
